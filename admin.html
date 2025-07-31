@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - SENTERPRISEIT Registros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'tech-blue': '#1e40af',
+                        'tech-cyan': '#0891b2',
+                        'tech-indigo': '#6366f1',
+                        'tech-purple': '#8b5cf6',
+                        'tech-green': '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-microchip text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">SENTERPRISEIT</h1>
+                        <p class="text-xs text-gray-600">Panel de Administración</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="exportToExcel()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
+                        <i class="fas fa-file-excel"></i>
+                        <span>Exportar Excel</span>
+                    </button>
+                    <button onclick="clearAllRegistrations()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
+                        <i class="fas fa-trash"></i>
+                        <span>Limpiar Todo</span>
+                    </button>
+                    <a href="index.html" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
+                        <i class="fas fa-home"></i>
+                        <span>Inicio</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Total Registros</p>
+                        <p class="text-2xl font-semibold text-gray-900" id="totalRegistrations">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100 text-green-600">
+                        <i class="fas fa-phone text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Conmutador</p>
+                        <p class="text-2xl font-semibold text-gray-900" id="conmutadorCount">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-credit-card text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">TPV</p>
+                        <p class="text-2xl font-semibold text-gray-900" id="tpvCount">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-orange-100 text-orange-600">
+                        <i class="fas fa-clock text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Asistencia</p>
+                        <p class="text-2xl font-semibold text-gray-900" id="asistenciaCount">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-lg shadow p-6 mb-8">
+            <div class="flex flex-wrap items-center gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Filtrar por Solución</label>
+                    <select id="solutionFilter" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Todas las soluciones</option>
+                        <option value="conmutador">Conmutador</option>
+                        <option value="tpv">TPV</option>
+                        <option value="asistencia">Asistencia</option>
+                        <option value="todas">Todas las Soluciones</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Buscar</label>
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre, empresa o email..." class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="ml-auto">
+                    <button onclick="clearFilters()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
+                        Limpiar Filtros
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registrations Table -->
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-900">Registros de Interés</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                                            <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Empresa</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Solución</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                    <tbody id="registrationsTableBody" class="bg-white divide-y divide-gray-200">
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- No Data Message -->
+        <div id="noDataMessage" class="hidden text-center py-12">
+            <i class="fas fa-inbox text-4xl text-gray-400 mb-4"></i>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">No hay registros</h3>
+            <p class="text-gray-500">Aún no se han recibido registros de interés.</p>
+        </div>
+    </main>
+
+    <!-- View Details Modal -->
+    <div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full">
+                <div class="flex justify-between items-center p-6 border-b">
+                    <h3 class="text-lg font-semibold text-gray-900">Detalles del Registro</h3>
+                    <button onclick="closeDetailsModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="p-6" id="modalContent">
+                    <!-- Content will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="firebase-config.js"></script>
+    
+    <script>
+        let allRegistrations = [];
+        let filteredRegistrations = [];
+        let isLoading = false;
+
+        // Load registrations on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadRegistrations();
+            setupEventListeners();
+        });
+
+        async function loadRegistrations() {
+            try {
+                isLoading = true;
+                showLoadingState();
+                
+                // Try to load from database first
+                if (window.databaseService) {
+                    allRegistrations = await window.databaseService.getAllRegistrations();
+                } else {
+                    // Fallback to localStorage
+                    allRegistrations = JSON.parse(localStorage.getItem('senterpriseit_registrations') || '[]');
+                }
+                
+                filteredRegistrations = [...allRegistrations];
+                updateStats();
+                renderTable();
+                
+            } catch (error) {
+                console.error('Error loading registrations:', error);
+                // Fallback to localStorage
+                allRegistrations = JSON.parse(localStorage.getItem('senterpriseit_registrations') || '[]');
+                filteredRegistrations = [...allRegistrations];
+                updateStats();
+                renderTable();
+            } finally {
+                isLoading = false;
+                hideLoadingState();
+            }
+        }
+
+        function showLoadingState() {
+            const tbody = document.getElementById('registrationsTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="text-center py-8">
+                        <div class="flex items-center justify-center">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                            <span class="ml-3 text-gray-600">Cargando registros...</span>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function hideLoadingState() {
+            // Loading state will be replaced by renderTable()
+        }
+
+        function setupEventListeners() {
+            document.getElementById('solutionFilter').addEventListener('change', filterRegistrations);
+            document.getElementById('searchInput').addEventListener('input', filterRegistrations);
+        }
+
+        function filterRegistrations() {
+            const solutionFilter = document.getElementById('solutionFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+            filteredRegistrations = allRegistrations.filter(reg => {
+                const matchesSolution = !solutionFilter || reg.solucion === solutionFilter;
+                const matchesSearch = !searchTerm || 
+                    reg.nombre.toLowerCase().includes(searchTerm) ||
+                    reg.empresa.toLowerCase().includes(searchTerm) ||
+                    reg.email.toLowerCase().includes(searchTerm);
+                
+                return matchesSolution && matchesSearch;
+            });
+
+            renderTable();
+        }
+
+        function clearFilters() {
+            document.getElementById('solutionFilter').value = '';
+            document.getElementById('searchInput').value = '';
+            filteredRegistrations = [...allRegistrations];
+            renderTable();
+        }
+
+        function updateStats() {
+            document.getElementById('totalRegistrations').textContent = allRegistrations.length;
+            document.getElementById('conmutadorCount').textContent = allRegistrations.filter(r => r.solucion === 'conmutador').length;
+            document.getElementById('tpvCount').textContent = allRegistrations.filter(r => r.solucion === 'tpv').length;
+            document.getElementById('asistenciaCount').textContent = allRegistrations.filter(r => r.solucion === 'asistencia').length;
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('registrationsTableBody');
+            const noDataMessage = document.getElementById('noDataMessage');
+
+            if (filteredRegistrations.length === 0) {
+                tbody.innerHTML = '';
+                noDataMessage.classList.remove('hidden');
+                return;
+            }
+
+            noDataMessage.classList.add('hidden');
+            
+            tbody.innerHTML = filteredRegistrations.map((reg, index) => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${reg.nombre}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${reg.empresa}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${reg.email}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${reg.telefono}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getSolutionBadgeClass(reg.solucion)}">
+                            ${getSolutionDisplayName(reg.solucion)}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        ${reg.createdAt ? new Date(reg.createdAt.toDate ? reg.createdAt.toDate() : reg.createdAt).toLocaleDateString('es-ES') : new Date(reg.fecha).toLocaleDateString('es-ES')}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${reg.status === 'local' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}">
+                            ${reg.status === 'local' ? 'Local' : 'Online'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button onclick="viewDetails(${index})" class="text-blue-600 hover:text-blue-900 mr-3">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button onclick="deleteRegistration(${index})" class="text-red-600 hover:text-red-900">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getSolutionBadgeClass(solution) {
+            const classes = {
+                'conmutador': 'bg-blue-100 text-blue-800',
+                'tpv': 'bg-purple-100 text-purple-800',
+                'asistencia': 'bg-orange-100 text-orange-800',
+                'todas': 'bg-green-100 text-green-800'
+            };
+            return classes[solution] || 'bg-gray-100 text-gray-800';
+        }
+
+        function getSolutionDisplayName(solution) {
+            const names = {
+                'conmutador': 'Conmutador',
+                'tpv': 'TPV',
+                'asistencia': 'Asistencia',
+                'todas': 'Todas'
+            };
+            return names[solution] || solution;
+        }
+
+        function viewDetails(index) {
+            const reg = filteredRegistrations[index];
+            const modal = document.getElementById('detailsModal');
+            const content = document.getElementById('modalContent');
+
+            content.innerHTML = `
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                        <p class="mt-1 text-sm text-gray-900">${reg.nombre}</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Empresa</label>
+                        <p class="mt-1 text-sm text-gray-900">${reg.empresa}</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Email</label>
+                        <p class="mt-1 text-sm text-gray-900">${reg.email}</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+                        <p class="mt-1 text-sm text-gray-900">${reg.telefono}</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Solución de Interés</label>
+                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getSolutionBadgeClass(reg.solucion)}">
+                            ${getSolutionDisplayName(reg.solucion)}
+                        </span>
+                    </div>
+                    ${reg.mensaje ? `
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Mensaje</label>
+                        <p class="mt-1 text-sm text-gray-900">${reg.mensaje}</p>
+                    </div>
+                    ` : ''}
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Fecha de Registro</label>
+                        <p class="mt-1 text-sm text-gray-900">${new Date(reg.fecha).toLocaleString('es-ES')}</p>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').classList.add('hidden');
+        }
+
+        async function deleteRegistration(index) {
+            if (confirm('¿Estás seguro de que quieres eliminar este registro?')) {
+                const regToDelete = filteredRegistrations[index];
+                
+                try {
+                    // Try to delete from database first
+                    if (window.databaseService && regToDelete.id) {
+                        const result = await window.databaseService.deleteRegistration(regToDelete.id);
+                        if (result.success) {
+                            console.log('Registration deleted from database');
+                        }
+                    }
+                    
+                    // Remove from local arrays
+                    allRegistrations = allRegistrations.filter(r => r.id !== regToDelete.id);
+                    filteredRegistrations = filteredRegistrations.filter(r => r.id !== regToDelete.id);
+                    
+                    // Update localStorage
+                    localStorage.setItem('senterpriseit_registrations', JSON.stringify(allRegistrations));
+                    
+                    updateStats();
+                    renderTable();
+                    
+                    alert('Registro eliminado exitosamente');
+                    
+                } catch (error) {
+                    console.error('Error deleting registration:', error);
+                    alert('Error al eliminar registro. Inténtalo de nuevo.');
+                }
+            }
+        }
+
+        async function clearAllRegistrations() {
+            if (confirm('¿Estás seguro de que quieres eliminar TODOS los registros? Esta acción no se puede deshacer.')) {
+                try {
+                    // Clear from database if available
+                    if (window.databaseService) {
+                        for (const reg of allRegistrations) {
+                            if (reg.id && !reg.id.startsWith('local_')) {
+                                try {
+                                    await window.databaseService.deleteRegistration(reg.id);
+                                } catch (error) {
+                                    console.error('Error deleting from database:', error);
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Clear localStorage
+                    localStorage.removeItem('senterpriseit_registrations');
+                    
+                    // Clear arrays
+                    allRegistrations = [];
+                    filteredRegistrations = [];
+                    
+                    updateStats();
+                    renderTable();
+                    
+                    alert('Todos los registros han sido eliminados');
+                    
+                } catch (error) {
+                    console.error('Error clearing registrations:', error);
+                    alert('Error al eliminar registros. Inténtalo de nuevo.');
+                }
+            }
+        }
+
+        async function exportToExcel() {
+            try {
+                let result;
+                
+                // Try to export from database first
+                if (window.databaseService) {
+                    result = await window.databaseService.exportToCSV();
+                } else {
+                    // Fallback to localStorage export
+                    if (allRegistrations.length === 0) {
+                        alert('No hay registros para exportar');
+                        return;
+                    }
+
+                    const headers = ['ID', 'Nombre', 'Empresa', 'Email', 'Teléfono', 'Solución', 'Mensaje', 'Fecha', 'Estado'];
+                    const csvContent = [
+                        headers.join(','),
+                        ...allRegistrations.map(reg => [
+                            `"${reg.id || ''}"`,
+                            `"${reg.nombre}"`,
+                            `"${reg.empresa}"`,
+                            `"${reg.email}"`,
+                            `"${reg.telefono}"`,
+                            `"${getSolutionDisplayName(reg.solucion)}"`,
+                            `"${reg.mensaje || ''}"`,
+                            `"${new Date(reg.fecha).toLocaleDateString('es-ES')}"`,
+                            `"${reg.status || 'local'}"`
+                        ].join(','))
+                    ].join('\n');
+
+                    result = { 
+                        success: true, 
+                        data: csvContent, 
+                        filename: `registros_senterpriseit_${new Date().toISOString().split('T')[0]}.csv` 
+                    };
+                }
+
+                if (result.success) {
+                    const blob = new Blob([result.data], { type: 'text/csv;charset=utf-8;' });
+                    const link = document.createElement('a');
+                    const url = URL.createObjectURL(blob);
+                    link.setAttribute('href', url);
+                    link.setAttribute('download', result.filename);
+                    link.style.visibility = 'hidden';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    alert('Registros exportados exitosamente');
+                } else {
+                    alert(result.message || 'Error al exportar registros');
+                }
+                
+            } catch (error) {
+                console.error('Error exporting to Excel:', error);
+                alert('Error al exportar registros. Inténtalo de nuevo.');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('detailsModal');
+            if (e.target === modal) {
+                closeDetailsModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeDetailsModal();
+            }
+        });
+    </script>
+</body>
+</html> 

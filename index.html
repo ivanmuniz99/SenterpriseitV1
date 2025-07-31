@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTERPRISEIT - Soluciones Tecnológicas Empresariales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'tech-blue': '#1e40af',
+                        'tech-cyan': '#0891b2',
+                        'tech-indigo': '#6366f1',
+                        'tech-purple': '#8b5cf6',
+                        'tech-green': '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="logo-container">
+                        <div class="logo-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">SENTERPRISEIT</h1>
+                        <p class="text-xs text-gray-600">SOLUCIONES TECNOLÓGICAS EMPRESARIALES</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#servicios" class="nav-pill">Servicios</a>
+                    <a href="#soluciones" class="nav-pill active">Soluciones</a>
+                </nav>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center space-x-4">
+                    <button class="btn-primary" onclick="openRegistrationModal()">Regístrate</button>
+                    <button class="btn-secondary">Iniciar Sesión</button>
+                    <div class="flex space-x-2">
+                        <button class="flag-btn active">
+                            <i class="fas fa-flag"></i>
+                        </button>
+                        <button class="flag-btn">
+                            <i class="fas fa-flag-usa"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Content -->
+                <div class="text-center lg:text-left">
+                    <h2 class="hero-title">
+                        TODAS LAS SOLUCIONES TECNOLÓGICAS QUE NECESITAS, TAMBIÉN EN TU CELULAR
+                    </h2>
+                    <p class="hero-subtitle mt-6">
+                        Conmutador en la nube, terminales punto de venta y sistemas de control de asistencia 
+                        integrados en una plataforma completa para tu empresa.
+                    </p>
+                    
+                    <!-- WhatsApp Button -->
+                    <div class="mt-8">
+                        <button class="whatsapp-btn" onclick="openWhatsApp()">
+                            <i class="fab fa-whatsapp text-2xl"></i>
+                            <span>WhatsApp Me</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Device Mockups -->
+                <div class="relative">
+                    <div class="device-mockups">
+                        <!-- Phone 1 -->
+                        <div class="phone-mockup phone-1">
+                            <div class="phone-screen">
+                                <div class="app-header">
+                                    <h3 class="text-white font-bold">SENTERPRISEIT</h3>
+                                    <p class="text-xs text-blue-200">Conmutador Cloud</p>
+                                </div>
+                                <div class="app-content">
+                                    <div class="call-item">
+                                        <div class="call-avatar bg-green-500"></div>
+                                        <div class="call-info">
+                                            <div class="call-name">Juan Pérez</div>
+                                            <div class="call-status">En línea</div>
+                                        </div>
+                                        <i class="fas fa-phone text-green-500"></i>
+                                    </div>
+                                    <div class="call-item">
+                                        <div class="call-avatar bg-blue-500"></div>
+                                        <div class="call-info">
+                                            <div class="call-name">María García</div>
+                                            <div class="call-status">Ocupada</div>
+                                        </div>
+                                        <i class="fas fa-phone-slash text-red-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phone 2 -->
+                        <div class="phone-mockup phone-2">
+                            <div class="phone-screen">
+                                <div class="app-header">
+                                    <h3 class="text-white font-bold">SENTERPRISEIT</h3>
+                                    <p class="text-xs text-blue-200">TPV Móvil</p>
+                                </div>
+                                <div class="app-content">
+                                    <div class="pos-item">
+                                        <div class="pos-icon">💳</div>
+                                        <div class="pos-info">
+                                            <div class="pos-title">Venta #1234</div>
+                                            <div class="pos-amount">$1,250.00</div>
+                                        </div>
+                                        <div class="pos-status success">Aprobada</div>
+                                    </div>
+                                    <div class="pos-item">
+                                        <div class="pos-icon">📱</div>
+                                        <div class="pos-info">
+                                            <div class="pos-title">Pago Móvil</div>
+                                            <div class="pos-amount">$850.00</div>
+                                        </div>
+                                        <div class="pos-status pending">Pendiente</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Laptop -->
+                        <div class="laptop-mockup">
+                            <div class="laptop-screen">
+                                <div class="dashboard-header">
+                                    <h3 class="text-white font-bold">SENTERPRISEIT Dashboard</h3>
+                                    <p class="text-xs text-blue-200">Control de Asistencia</p>
+                                </div>
+                                <div class="dashboard-content">
+                                    <div class="stats-grid">
+                                        <div class="stat-card">
+                                            <div class="stat-icon">👥</div>
+                                            <div class="stat-info">
+                                                <div class="stat-number">45</div>
+                                                <div class="stat-label">Empleados</div>
+                                            </div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <div class="stat-icon">✅</div>
+                                            <div class="stat-info">
+                                                <div class="stat-number">42</div>
+                                                <div class="stat-label">Presentes</div>
+                                            </div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <div class="stat-icon">⏰</div>
+                                            <div class="stat-info">
+                                                <div class="stat-number">8:30</div>
+                                                <div class="stat-label">Promedio</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <button class="service-category" onclick="scrollToService('conmutador')">
+                    <i class="fas fa-phone-alt text-3xl mb-4"></i>
+                    <span class="text-lg font-semibold">Conmutador</span>
+                    <p class="text-sm text-gray-600 mt-2">Sistema telefónico en la nube</p>
+                </button>
+                <button class="service-category" onclick="scrollToService('tpv')">
+                    <i class="fas fa-credit-card text-3xl mb-4"></i>
+                    <span class="text-lg font-semibold">TPV</span>
+                    <p class="text-sm text-gray-600 mt-2">Terminales punto de venta</p>
+                </button>
+                <button class="service-category" onclick="scrollToService('asistencia')">
+                    <i class="fas fa-clock text-3xl mb-4"></i>
+                    <span class="text-lg font-semibold">Asistencia</span>
+                    <p class="text-sm text-gray-600 mt-2">Control de personal</p>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services Section -->
+    <section class="detailed-services">
+        <!-- Conmutador Section -->
+        <div id="conmutador" class="service-detail-section">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Conmutador en la Nube</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Sistema telefónico empresarial completamente en la nube que revoluciona la comunicación de tu empresa
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-cloud text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Infraestructura en la Nube</h3>
+                                <p class="text-gray-600">Sin necesidad de equipos físicos costosos. Todo se gestiona desde la nube con máxima seguridad y disponibilidad.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Gestión de Extensiones</h3>
+                                <p class="text-gray-600">Administra extensiones, transferencias, conferencias y buzones de voz desde una interfaz intuitiva.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Aplicación Móvil</h3>
+                                <p class="text-gray-600">Accede a tu extensión desde cualquier lugar con la aplicación móvil disponible para iOS y Android.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Reportes y Analytics</h3>
+                                <p class="text-gray-600">Monitorea el uso de llamadas, tiempos de respuesta y métricas de productividad en tiempo real.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Características Principales</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Transferencias de llamadas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Conferencias multipartes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Buzón de voz integrado</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>IVR personalizable</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Integración con CRM</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Soporte 24/7</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TPV Section -->
+        <div id="tpv" class="service-detail-section bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Terminales Punto de Venta (TPV)</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Soluciones de pago completas para procesar transacciones de forma segura y eficiente
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Tipos de Terminales</h3>
+                        <div class="space-y-4">
+                            <div class="terminal-type">
+                                <h4 class="font-semibold text-gray-900">TPV Fijo</h4>
+                                <p class="text-gray-600">Ideal para establecimientos con punto de venta fijo</p>
+                            </div>
+                            <div class="terminal-type">
+                                <h4 class="font-semibold text-gray-900">TPV Móvil</h4>
+                                <p class="text-gray-600">Perfecto para ventas ambulantes y delivery</p>
+                            </div>
+                            <div class="terminal-type">
+                                <h4 class="font-semibold text-gray-900">TPV Virtual</h4>
+                                <p class="text-gray-600">Para comercio electrónico y pagos online</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Seguridad PCI DSS</h3>
+                                <p class="text-gray-600">Cumplimiento total con estándares de seguridad para procesamiento de pagos con tarjeta.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-credit-card text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Múltiples Métodos de Pago</h3>
+                                <p class="text-gray-600">Acepta tarjetas de crédito/débito, pagos móviles, transferencias y efectivo.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-sync-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Sincronización en Tiempo Real</h3>
+                                <p class="text-gray-600">Todas las transacciones se sincronizan automáticamente con tu sistema de inventario.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-file-invoice text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Facturación Automática</h3>
+                                <p class="text-gray-600">Genera facturas electrónicas automáticamente y envíalas por email o WhatsApp.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Asistencia Section -->
+        <div id="asistencia" class="service-detail-section">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Control de Asistencia</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Sistema integral para gestionar la asistencia, horarios y nómina de tu personal
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-fingerprint text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Múltiples Métodos de Registro</h3>
+                                <p class="text-gray-600">Huella dactilar, reconocimiento facial, tarjetas RFID o aplicación móvil para mayor flexibilidad.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Control de Horarios</h3>
+                                <p class="text-gray-600">Define horarios flexibles, turnos rotativos y tolerancias personalizadas por empleado.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-calendar-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Gestión de Vacaciones</h3>
+                                <p class="text-gray-600">Control automático de días de vacaciones, permisos y ausencias justificadas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-bar text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Reportes Automáticos</h3>
+                                <p class="text-gray-600">Genera reportes de asistencia, horas trabajadas y nómina automáticamente.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Beneficios del Sistema</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Reducción de errores manuales</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Ahorro en tiempo de procesamiento</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Cumplimiento laboral automático</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Integración con sistemas de nómina</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Acceso desde cualquier dispositivo</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Backup automático en la nube</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8">Contáctanos</h3>
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="contact-info">
+                            <div class="flex items-center mb-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Iván E. Muñiz</h4>
+                                    <p class="text-gray-600">Presidente</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Corporativo EING</h4>
+                                    <p class="text-gray-600">SENTERPRISEIT</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-details">
+                            <div class="flex items-center mb-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">656-437-6040</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">ivan.muniz@corporativoeing.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-gray-900">Registro de Interés</h3>
+                <button class="modal-close" onclick="closeRegistrationModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="registrationForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="form-label">Nombre Completo *</label>
+                        <input type="text" name="nombre" class="form-input" required>
+                    </div>
+                    <div>
+                        <label class="form-label">Empresa *</label>
+                        <input type="text" name="empresa" class="form-input" required>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="form-label">Email *</label>
+                        <input type="email" name="email" class="form-input" required>
+                    </div>
+                    <div>
+                        <label class="form-label">Teléfono *</label>
+                        <input type="tel" name="telefono" class="form-input" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Solución de Interés *</label>
+                    <select name="solucion" class="form-input" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="conmutador">Conmutador en la Nube</option>
+                        <option value="tpv">Terminales Punto de Venta (TPV)</option>
+                        <option value="asistencia">Control de Asistencia</option>
+                        <option value="todas">Todas las Soluciones</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Mensaje</label>
+                    <textarea name="mensaje" class="form-input" rows="4" placeholder="Cuéntanos más sobre tus necesidades..."></textarea>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="btn-secondary" onclick="closeRegistrationModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Enviar Registro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

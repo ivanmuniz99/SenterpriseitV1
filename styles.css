@@ -1,0 +1,725 @@
+/* Custom CSS for SENTERPRISEIT Landing Page */
+
+/* Logo Styles */
+.logo-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.logo-icon {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e40af, #0891b2, #6366f1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    position: relative;
+    overflow: hidden;
+    animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    animation: logoShine 4s linear infinite;
+}
+
+@keyframes logoGlow {
+    0% { box-shadow: 0 0 20px rgba(30, 64, 175, 0.3); }
+    100% { box-shadow: 0 0 30px rgba(8, 145, 178, 0.5); }
+}
+
+@keyframes logoShine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Navigation Pills */
+.nav-pill {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: #f3f4f6;
+    color: #6b7280;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-pill:hover, .nav-pill.active {
+    background: linear-gradient(135deg, #1e40af, #0891b2);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #059669, #047857);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(5, 150, 105, 0.4);
+}
+
+.flag-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #f3f4f6;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+}
+
+.flag-btn:hover, .flag-btn.active {
+    background: linear-gradient(135deg, #1e40af, #0891b2);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    font-size: 16px;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+    background: linear-gradient(135deg, #128c7e, #075e54);
+}
+
+.whatsapp-btn i {
+    font-size: 24px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #1e40af 0%, #0891b2 50%, #6366f1 100%);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+/* Device Mockups */
+.device-mockups {
+    position: relative;
+    height: 500px;
+    animation: fadeInRight 1s ease-out 0.6s both;
+}
+
+.phone-mockup {
+    position: absolute;
+    width: 200px;
+    height: 350px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.phone-mockup:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.phone-1 {
+    left: 0;
+    top: 50px;
+    z-index: 2;
+}
+
+.phone-2 {
+    left: 120px;
+    top: 30px;
+    z-index: 1;
+}
+
+.laptop-mockup {
+    position: absolute;
+    right: 0;
+    top: 100px;
+    width: 300px;
+    height: 200px;
+    background: #374151;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.laptop-mockup:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.phone-screen, .laptop-screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e40af, #0891b2);
+    padding: 15px;
+    color: white;
+}
+
+.app-header, .dashboard-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.app-content, .dashboard-content {
+    font-size: 12px;
+}
+
+.call-item, .pos-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+}
+
+.call-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.call-info, .pos-info {
+    flex: 1;
+}
+
+.call-name, .pos-title {
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.call-status, .pos-amount {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+.pos-status {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.pos-status.success {
+    background: rgba(16, 185, 129, 0.3);
+    color: #10b981;
+}
+
+.pos-status.pending {
+    background: rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-icon {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.stat-number {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+/* Services Section */
+.services-section {
+    background: white;
+    padding: 40px 0;
+}
+
+.service-category {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #6b7280;
+    font-weight: 500;
+    min-height: 200px;
+    justify-content: center;
+}
+
+.service-category:hover {
+    border-color: #10b981;
+    color: #10b981;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+}
+
+.service-category i {
+    transition: all 0.3s ease;
+}
+
+.service-category:hover i {
+    transform: scale(1.2);
+    color: #10b981;
+}
+
+/* Detailed Services Section */
+.detailed-services {
+    background: white;
+}
+
+.service-detail-section {
+    padding: 40px 0;
+}
+
+.service-detail-section:nth-child(even) {
+    background: #f9fafb;
+}
+
+.feature-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #1e40af, #0891b2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.terminal-type {
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid #10b981;
+}
+
+.terminal-type h4 {
+    color: #10b981;
+    margin-bottom: 8px;
+}
+
+/* Contact Section */
+.contact-section {
+    background: #f9fafb;
+    padding: 40px 0;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #1e40af, #0891b2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+/* Registration Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 0;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+/* Form Styles */
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #1e40af;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+#registrationForm {
+    padding: 32px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .device-mockups {
+        height: 400px;
+        margin-top: 40px;
+    }
+    
+    .phone-mockup {
+        width: 150px;
+        height: 250px;
+    }
+    
+    .phone-1 {
+        left: 20px;
+        top: 50px;
+    }
+    
+    .phone-2 {
+        left: 100px;
+        top: 30px;
+    }
+    
+    .laptop-mockup {
+        width: 250px;
+        height: 150px;
+        right: 20px;
+        top: 80px;
+    }
+    
+    .services-section .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .service-category {
+        min-height: 150px;
+        padding: 20px 15px;
+    }
+    
+    .feature-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .modal-header {
+        padding: 20px 24px;
+    }
+    
+    #registrationForm {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .device-mockups {
+        height: 300px;
+    }
+    
+    .phone-mockup {
+        width: 120px;
+        height: 200px;
+    }
+    
+    .phone-1 {
+        left: 10px;
+        top: 30px;
+    }
+    
+    .phone-2 {
+        left: 80px;
+        top: 20px;
+    }
+    
+    .laptop-mockup {
+        width: 200px;
+        height: 120px;
+        right: 10px;
+        top: 60px;
+    }
+    
+    .services-section .grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+    
+    .service-category {
+        padding: 20px 15px;
+        font-size: 14px;
+    }
+    
+    .whatsapp-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    
+    .whatsapp-btn i {
+        font-size: 20px;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading animation for elements */
+.loading {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hover effects for interactive elements */
+.interactive {
+    transition: all 0.3s ease;
+}
+
+.interactive:hover {
+    transform: translateY(-2px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #1e40af, #0891b2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #1e3a8a, #0e7490);
+} 
