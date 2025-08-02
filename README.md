@@ -59,7 +59,7 @@ Una landing page moderna y responsiva para SENTERPRISEIT, empresa especializada 
 - **Tailwind CSS**: Framework de utilidades CSS
 - **Font Awesome**: Iconografía
 - **Google Fonts**: Tipografía web
-- **Firebase Firestore**: Base de datos en la nube (opcional)
+- **Supabase PostgreSQL**: Base de datos en la nube (recomendado)
 - **LocalStorage**: Almacenamiento local como respaldo
 
 ## 📁 Estructura del Proyecto
@@ -70,8 +70,8 @@ Pagina Web/
 ├── admin.html              # Panel de administración
 ├── styles.css              # Estilos personalizados
 ├── script.js               # Funcionalidad JavaScript
-├── firebase-config.js      # Configuración de Firebase
-├── FIREBASE_SETUP.md       # Instrucciones de configuración
+├── supabase-config.js      # Configuración de Supabase
+├── SUPABASE_SETUP.md       # Instrucciones de configuración
 └── README.md               # Documentación
 ```
 
@@ -93,15 +93,17 @@ Pagina Web/
 - Funciona offline
 - Limitado al navegador actual
 
-### Opción 2: Firebase Firestore (Recomendado)
-- Base de datos en la nube
+### Opción 2: Supabase PostgreSQL (Recomendado)
+- Base de datos PostgreSQL real en la nube
+- API REST automática
 - Sincronización en tiempo real
 - Acceso desde cualquier dispositivo
 - Modo offline con sincronización automática
+- Mejor rendimiento para consultas complejas
 
-#### Configurar Firebase:
-1. Sigue las instrucciones en `FIREBASE_SETUP.md`
-2. Actualiza la configuración en `firebase-config.js`
+#### Configurar Supabase:
+1. Sigue las instrucciones en `SUPABASE_SETUP.md`
+2. Actualiza la configuración en `supabase-config.js`
 3. Los datos se sincronizarán automáticamente
 
 ## ✨ Funcionalidades
@@ -192,7 +194,7 @@ Edita las variables CSS en `styles.css`:
 - **Intersection Observer**: Animaciones basadas en visibilidad
 - **Clipboard API**: Copia de información de contacto
 - **CSS Grid & Flexbox**: Layouts modernos y flexibles
-- **Firebase Firestore**: Base de datos en la nube con sincronización en tiempo real
+- **Supabase PostgreSQL**: Base de datos PostgreSQL real con sincronización en tiempo real
 - **Modo Offline**: Funcionamiento sin conexión con sincronización automática
 - **LocalStorage API**: Base de datos local como respaldo
 - **CSV Export**: Exportación de datos a Excel con información de estado

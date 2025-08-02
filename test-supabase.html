@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Supabase Connection</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Test Supabase Connection</h1>
+    <button onclick="testConnection()">Test Connection</button>
+    <button onclick="testInsert()">Test Insert</button>
+    <button onclick="testSelect()">Test Select</button>
+    <div id="results"></div>
+
+    <script>
+        // Supabase Configuration
+        const supabaseUrl = 'https://fvgywsxdvyedxbrsiagq.supabase.co'
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2Z3l3c3hkdnllZHhicnNpYWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwOTMxMTgsImV4cCI6MjA2OTY2OTExOH0.efrLLtwceaJS1jnHuc2g1EN45Ofx8gnQrws2Ly9b_3c'
+
+        // Initialize Supabase client
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey)
+
+        function log(message) {
+            console.log(message)
+            document.getElementById('results').innerHTML += '<p>' + message + '</p>'
+        }
+
+        async function testConnection() {
+            try {
+                log('Testing Supabase connection...')
+                const { data, error } = await supabaseClient
+                    .from('registrations')
+                    .select('count')
+                    .limit(1)
+                
+                if (error) {
+                    log('❌ Connection failed: ' + error.message)
+                } else {
+                    log('✅ Connection successful!')
+                }
+            } catch (error) {
+                log('❌ Connection error: ' + error.message)
+            }
+        }
+
+        async function testInsert() {
+            try {
+                log('Testing insert...')
+                const testData = {
+                    nombre: 'Test User',
+                    email: 'test@example.com',
+                    telefono: 1234567890,
+                    empresa: 'Test Company',
+                    solucion: 'conmutador',
+                    mensaje: 'Test message',
+                    created_at: new Date().toISOString(),
+                    status: 'online'
+                }
+
+                const { data, error } = await supabaseClient
+                    .from('registrations')
+                    .insert([testData])
+                    .select()
+
+                if (error) {
+                    log('❌ Insert failed: ' + error.message)
+                } else {
+                    log('✅ Insert successful! ID: ' + data[0].id)
+                }
+            } catch (error) {
+                log('❌ Insert error: ' + error.message)
+            }
+        }
+
+        async function testSelect() {
+            try {
+                log('Testing select...')
+                const { data, error } = await supabaseClient
+                    .from('registrations')
+                    .select('*')
+                    .limit(5)
+
+                if (error) {
+                    log('❌ Select failed: ' + error.message)
+                } else {
+                    log('✅ Select successful! Found ' + data.length + ' records')
+                    data.forEach(record => {
+                        log('- ' + record.nombre + ' (' + record.email + ')')
+                    })
+                }
+            } catch (error) {
+                log('❌ Select error: ' + error.message)
+            }
+        }
+    </script>
+</body>
+</html> 
